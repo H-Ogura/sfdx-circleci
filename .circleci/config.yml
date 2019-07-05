@@ -57,7 +57,7 @@ jobs:
       - store_test_results:
           path: ~/junit
       - run:
-          name: Create Package & Install
+          name: Create & Install Package
           command: |
             chmod +x scripts/packagingDeployment.sh
             scripts/packagingDeployment.sh
