@@ -5,6 +5,7 @@ BRANCH=$1
 SFDX_CLI_EXEC="sfdx"
 TARGET_ORG='packaging@trailheadapps.org'
 TARGETDEVHUBUSERNAME="ogurah@curious-panda-m1t97k.com"
+PACKAGENAME="DXVerificationCi"
 RESULT=0
 
 # Defining Salesforce CLI exec, depending if it's CI or local dev machine
@@ -15,8 +16,8 @@ if [ $CI ]; then
   SFDX_CLI_EXEC="sfdx"
   TARGET_ORG="DXVerification"
 fi
-
-PACKAGE_VERSION="$($SFDX_CLI_EXEC force:package:version:create -p DXVerificationCi -x -w 10 --json)"
+$SFDX_CLI_EXEC force:package:create --name $PACKAGENAME --packagetype Unlocked --path force-app
+PACKAGE_VERSION="$($SFDX_CLI_EXEC force:package:version:create -p $PACKAGENAME -x -w 10 --json)"
 RESULT="$(echo $PACKAGE_VERSION | jq '.status')"
 echo "Result is $RESULT"
 
