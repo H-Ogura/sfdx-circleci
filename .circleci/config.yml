@@ -57,6 +57,10 @@ jobs:
       - store_test_results:
           path: ~/junit
       - run:
+          name: Create Package & Install
+          command: |
+            scripts/packagingDeployment.sh
+      - run:
           name: Delete Useless Scratch Org
           command: |
             sfdx force:org:delete -u circle_build_$CIRCLE_BUILD_NUM -p
