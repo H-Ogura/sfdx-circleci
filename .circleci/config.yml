@@ -6,9 +6,6 @@ general:
 #     only:
 #       - dev # specific branch
 #       - /dev-.*/ # or regexes
-defaults: &defaults
-  docker:
-    - image: circleci/node:latest
 
 jobs:
   build:
@@ -62,6 +59,7 @@ jobs:
       - run:
           name: Create Package & Install
           command: |
+            chmod +x scripts/packagingDeployment.sh
             scripts/packagingDeployment.sh
       - run:
           name: Delete Useless Scratch Org
