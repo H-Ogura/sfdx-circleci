@@ -6,6 +6,9 @@ general:
 #     only:
 #       - dev # specific branch
 #       - /dev-.*/ # or regexes
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
 
 jobs:
   build:
